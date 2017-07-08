@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
    var Event = sequelize.define("Event", {
-      creator: DataTypes.BIGINT,
+      host: DataTypes.BIGINT,
+      title: DataTypes.STRING,
       location: DataTypes.STRING, 
       date: DataTypes.DATE,
-      title: DataTypes.STRING,
       description: DataTypes.TEXT
    });
    return Event;
