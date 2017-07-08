@@ -34,8 +34,6 @@ module.exports = function (app) {
          })
    });
 
-   // GET route for retrieving attendees of an event
-
    // GET route for retrieving a single event
    app.get('/api/events/:id', function (req, res) {
       db.Event.findOne({
