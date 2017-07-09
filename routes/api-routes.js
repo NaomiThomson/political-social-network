@@ -62,11 +62,12 @@ module.exports = function (app) {
 
       // POST route for saving a new event
       app.post('/api/events', function (req, res) {
+            console.log(req.body)
             db.Event.create({
                         host: req.body.host,
+                        title: req.body.title,
                         location: req.body.location,
                         date: req.body.date,
-                        title: req.body.title,
                         description: req.body.description
                   })
                   .then(function (dbEvent) {
@@ -88,13 +89,14 @@ module.exports = function (app) {
 
       // PUT route for updating events 
       app.put('/api/events', function (req, res) {
-            db.Event.update(req.body, {
+            db.Event.update(req.body, 
+                  {
                         where: {
                               id: req.body.id
                         }
             })
-      })
                   .then(function (dbEvent) {
                         res.json(dbEvent)
             });
+}); 
 }; 

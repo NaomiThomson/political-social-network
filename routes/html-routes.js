@@ -2,8 +2,8 @@ var path = require('path');
 
 module.exports = function(app) {
 
-   app.get('/newevent', function(req, res) {
-      res.sendFile(path.join(__dirname + '/../public/newevent.html'))
+   app.get('/addevent', function(req, res) {
+      res.sendFile(path.join(__dirname + '/../public/addevent.html'))
    }); 
 
    app.get('/event', function(req, res) {

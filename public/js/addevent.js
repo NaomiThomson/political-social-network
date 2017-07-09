@@ -9,7 +9,7 @@ $("#add-btn").on("click", function (event) {
   };
 
   // Question: What does this code do??
-  $.post("/api/new", newEvent)
+  $.post("/addevent", newEvent)
     .done(function (data) {
       console.log(data);
     });
