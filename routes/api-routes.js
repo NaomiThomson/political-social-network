@@ -62,7 +62,6 @@ module.exports = function (app) {
 
   // POST route for saving a new event
   app.post('/api/events', function (req, res) {
-    console.log(req.body)
     db.Event.create({
         host: req.body.host,
         title: req.body.title,
