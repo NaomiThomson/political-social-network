@@ -11,6 +11,12 @@ $(document).ready(function () {
     getPostData(postId);
   }
 
+  // Getting jQuery references to the post body, title, form, and category select
+  var hostInput = $("#host");
+  var titleInput = $("#title");
+  var locationInput = $("#location");
+  var dateInput = $("#date");
+  var descriptionInput = $("#description");
 
   // Adding an event listener for when the form is submitted
   $("#add-btn").on("click", function handleFormSubmit(event) {
@@ -22,18 +28,12 @@ $(document).ready(function () {
       return;
     }
 
-    // Getting jQuery references to the post body, title, form, and category select
-    var hostInput = $("#host");
-    var titleInput = $("#title");
-    var locationInput = $("#location");
-    var dateInput = $("#date");
-    var descriptionInput = $("#description");
-
     newPost.id = postId;
     updatePost(newPost);
 
 
   });
+
   // Gets post data for a post if we're editing
   function getPostData(id) {
     $.get(`/api/events/${id}`, function (data) {
