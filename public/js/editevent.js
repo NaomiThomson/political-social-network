@@ -28,10 +28,17 @@ $(document).ready(function () {
       return;
     }
 
+       // Constructing a newPost object to hand to the database
+    var newPost = {
+      host: hostInput.val().trim(),
+      title: titleInput.val().trim(),
+      location: locationInput.val().trim(),
+      date: dateInput.val().trim(),
+      description: descriptionInput.val().trim()
+    };
+
     newPost.id = postId;
     updatePost(newPost);
-
-
   });
 
   // Gets post data for a post if we're editing
@@ -51,7 +58,7 @@ $(document).ready(function () {
   function updatePost(post) {
     $.ajax({
         method: "PUT",
-        url: "/api/posts",
+        url: "/api/events",
         data: post
       })
       .done(function () {
