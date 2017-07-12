@@ -86,12 +86,12 @@ module.exports = function (app) {
       // !!!!! NEW FXN - CHECK AFTER CREATING USER !!!!!!
       // POST route for adding attendees to event
       app.post('/event', function (req, res) {
-            models.Event.find({
+            db.Event.find({
                   where: {
                         id: 1
                   }
             }).on('success', function (event) {
-                  models.User.findAll({
+                  db.User.findAll({
                         where: {
                               id: [1, 2, 3]
                         }
@@ -130,6 +130,29 @@ module.exports = function (app) {
                         res.json(dbEvent)
                   });
       });
+
+      
+
+
+       // POST route for saving a new event
+      app.post('/api/users', function (req, res) {
+            db.User.create({
+                        email: req.body.email,
+                        password: req.body.password
+                  })
+                  .then(function (dbUser) {
+                        res.json(dbUser)
+                  })
+      });
+      
+      
+      // GET route for getting all users
+      app.get('/api/users', function (req, res) {
+            db.User.findAll({})
+                  .then(function (dbUser) {
+                        res.json(dbUser);
+                  })
+      });
 };
 
 
@@ -139,16 +162,16 @@ module.exports = function (app) {
 
 //user.setCities([city]);
 
-models.User.find({
-      where: {
-            first_name: 'john'
-      }
-}).on('success', function (user) {
-      models.Event.find({
-            where: {
-                  id: 10
-            }
-      }).on('success', function (event) {
-            user.setEvents([user]);
-      });
-});
+// models.User.find({
+//       where: {
+//             first_name: 'john'
+//       }
+// }).on('success', function (user) {
+//       models.Event.find({
+//             where: {
+//                   id: 10
+//             }
+//       }).on('success', function (event) {
+//             user.setEvents([user]);
+//       });
+// });

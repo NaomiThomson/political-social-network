@@ -7,18 +7,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     title: {
       type: DataTypes.STRING
-      // allowNull: false
     },
     location: {
       type: DataTypes.STRING,
-      // allowNull: false,
       validate: {
         is: ["^[a-z]+$", 'i']
       }
     },
     date: {
-      type: DataTypes.DATE,
-      allowNull: false
+      type: DataTypes.DATE
     },
     description: {
       type: DataTypes.TEXT
