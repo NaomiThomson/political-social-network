@@ -80,6 +80,33 @@ module.exports = function (app) {
                   })
       });
 
+
+
+      // ----------------------------------------------------
+      // !!!!! NEW FXN - CHECK AFTER CREATING USER !!!!!!
+      // POST route for adding attendees to event
+      app.post('/event', function (req, res) {
+            models.Event.find({
+                  where: {
+                        id: 1
+                  }
+            }).on('success', function (event) {
+                  models.User.findAll({
+                        where: {
+                              id: [1, 2, 3]
+                        }
+                  }).on('success', function (user) {
+                        event.setUsers(user);
+                  });
+            })
+            .then(function (dbEvent) {
+                  res.json(dbEvent)
+            });
+      })
+
+      // ----------------------------------------------------
+
+
       // DELETE route for deleting events
       app.delete('/api/events/:id', function (req, res) {
             db.Event.destroy({
@@ -104,3 +131,24 @@ module.exports = function (app) {
                   });
       });
 };
+
+
+
+
+
+
+//user.setCities([city]);
+
+models.User.find({
+      where: {
+            first_name: 'john'
+      }
+}).on('success', function (user) {
+      models.Event.find({
+            where: {
+                  id: 10
+            }
+      }).on('success', function (event) {
+            user.setEvents([user]);
+      });
+});
