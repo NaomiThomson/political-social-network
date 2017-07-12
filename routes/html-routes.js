@@ -21,4 +21,8 @@ module.exports = function(app) {
    app.get('/newsfeed', function(req, res) {
       res.sendFile(path.join(__dirname + '/../public/newsfeed.html'))
    }); 
+
+   app.get('/findevent', function(req, res) {
+      res.sendFile(path.join(__dirname + '/../public/findevent.html'))
+   }); 
 }

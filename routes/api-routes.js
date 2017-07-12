@@ -154,24 +154,3 @@ module.exports = function (app) {
                   })
       });
 };
-
-
-
-
-
-
-//user.setCities([city]);
-
-// models.User.find({
-//       where: {
-//             first_name: 'john'
-//       }
-// }).on('success', function (user) {
-//       models.Event.find({
-//             where: {
-//                   id: 10
-//             }
-//       }).on('success', function (event) {
-//             user.setEvents([user]);
-//       });
-// });
