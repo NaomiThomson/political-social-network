@@ -13,4 +13,12 @@ module.exports = function(app) {
    app.get('/event', function(req, res) {
       res.sendFile(path.join(__dirname + '/../public/event.html'))
    }); 
+
+   app.get('/adduser', function(req, res) {
+      res.sendFile(path.join(__dirname + '/../public/adduser.html'))
+   }); 
+
+   app.get('/newsfeed', function(req, res) {
+      res.sendFile(path.join(__dirname + '/../public/newsfeed.html'))
+   }); 
 }

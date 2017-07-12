@@ -80,6 +80,33 @@ module.exports = function (app) {
                   })
       });
 
+
+
+      // ----------------------------------------------------
+      // !!!!! NEW FXN - CHECK AFTER CREATING USER !!!!!!
+      // POST route for adding attendees to event
+      app.post('/event', function (req, res) {
+            db.Event.find({
+                  where: {
+                        id: 1
+                  }
+            }).on('success', function (event) {
+                  db.User.findAll({
+                        where: {
+                              id: [1, 2, 3]
+                        }
+                  }).on('success', function (user) {
+                        event.setUsers(user);
+                  });
+            })
+            .then(function (dbEvent) {
+                  res.json(dbEvent)
+            });
+      })
+
+      // ----------------------------------------------------
+
+
       // DELETE route for deleting events
       app.delete('/api/events/:id', function (req, res) {
             db.Event.destroy({
@@ -103,4 +130,48 @@ module.exports = function (app) {
                         res.json(dbEvent)
                   });
       });
+
+      
+
+
+       // POST route for saving a new event
+      app.post('/api/users', function (req, res) {
+            db.User.create({
+                        email: req.body.email,
+                        password: req.body.password
+                  })
+                  .then(function (dbUser) {
+                        res.json(dbUser)
+                  })
+      });
+      
+      
+      // GET route for getting all users
+      app.get('/api/users', function (req, res) {
+            db.User.findAll({})
+                  .then(function (dbUser) {
+                        res.json(dbUser);
+                  })
+      });
 };
+
+
+
+
+
+
+//user.setCities([city]);
+
+// models.User.find({
+//       where: {
+//             first_name: 'john'
+//       }
+// }).on('success', function (user) {
+//       models.Event.find({
+//             where: {
+//                   id: 10
+//             }
+//       }).on('success', function (event) {
+//             user.setEvents([user]);
+//       });
+// });
