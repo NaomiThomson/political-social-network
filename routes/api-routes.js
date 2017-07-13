@@ -109,11 +109,12 @@ module.exports = function (app) {
 
 
       // POST route for saving a new user
-      app.post('/api/users', function (req, res) {
+      app.post('/api/register', function (req, res) {
             db.User.generateHash(req.body.password)
                   .then(function (resp) {
                         console.log(resp)
                         db.User.create({
+                                    username: req.body.username,
                                     email: req.body.email,
                                     hash: resp
                               })
@@ -136,18 +137,25 @@ module.exports = function (app) {
       });
 
       // POST route for comparing password entered to the one in db
-      app.post('/login', function (req, res) {
+      app.post('/api/login', function (req, res) {
             db.User.findOne({
                   where: {
                         email: req.body.email
                   }
             }).then(function (dbUser) {
-                  console.log(dbUser);
+                  console.log(dbUser.dataValues.hash);
+                  console.log(req.body.password);
                   db.User.validPassword(req.body.password, dbUser.dataValues.hash)
                         .then(function (resp) {
-                              res.json({"msg": "Login sucess"});
+                              if (resp == true) {
+                                    res.json(resp);
+                              } 
+                              
+                              if (resp == false) {
+                                    res.json(resp);
+                              }
                         }).catch(function (err) {
-                              res.json({"msg": "Login fail;"});
+                              res.json(err)
                         })
             })
 

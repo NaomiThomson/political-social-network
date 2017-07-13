@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
   // Getting jQuery references to the post body, title, form, and category select
+  var usernameInput = $("#username");
   var emailInput = $("#email");
   var passwordInput = $("#password");
-  var usernameInput = $("#username");
-
+  
   // Adding an event listener for when the form is submitted
   $("#add-btn").on("click", function handleFormSubmit(event) {
 
@@ -22,8 +22,16 @@ $(document).ready(function () {
     };
 
     // // Submits a new post and brings user to newsfeed upon completion
-    $.post("/api/users", newUser, function() {
-      window.location.href = "/newsfeed"
+    // $.post("/register", newUser, function() {
+    //   window.location.href = "/newsfeed"
+    // })
+
+    axios.post('/api/register', newUser)
+    .then(function (resp) {
+      window.location.href = '/newsfeed'
+    })
+    .catch(function (err) {
+      console.log(err)
     })
   });
 
