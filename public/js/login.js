@@ -14,13 +14,14 @@ $(document).ready(function () {
       return;
     }
     // Constructing a newEvent object to hand to the database
-    var newUser = {
+    var userLogin = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-
+    
     // // Submits a new post and brings user to newsfeed upon completion
-    $.post("/api/users", newUser, function() {
+    $.post("/login", userLogin, function(resp) {
+      console.log(resp)
       window.location.href = "/newsfeed"
     })
   });
