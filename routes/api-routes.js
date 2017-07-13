@@ -87,21 +87,21 @@ module.exports = function (app) {
       // POST route for adding attendees to event
       app.post('/event', function (req, res) {
             db.Event.find({
-                  where: {
-                        id: 1
-                  }
-            }).on('success', function (event) {
-                  db.User.findAll({
                         where: {
-                              id: [1, 2, 3]
+                              id: 1
                         }
-                  }).on('success', function (user) {
-                        event.setUsers(user);
+                  }).on('success', function (event) {
+                        db.User.findAll({
+                              where: {
+                                    id: [1, 2, 3]
+                              }
+                        }).on('success', function (user) {
+                              event.setUsers(user);
+                        });
+                  })
+                  .then(function (dbEvent) {
+                        res.json(dbEvent)
                   });
-            })
-            .then(function (dbEvent) {
-                  res.json(dbEvent)
-            });
       })
 
       // ----------------------------------------------------
@@ -131,21 +131,28 @@ module.exports = function (app) {
                   });
       });
 
-      
 
 
-       // POST route for saving a new event
+
+      // POST route for saving a new user
       app.post('/api/users', function (req, res) {
-            db.User.create({
-                        email: req.body.email,
-                        password: req.body.password
+            db.User.generateHash(req.body.password)
+                  .then(function (resp) {
+                        console.log(resp)
+                        db.User.create({
+                                    email: req.body.email,
+                                    hash: resp
+                              })
+                              .then(function (dbUser) {
+                                    res.json(dbUser)
+                              })
+                  }).catch(function () {
+                        console.log("Promise Rejected");
                   })
-                  .then(function (dbUser) {
-                        res.json(dbUser)
-                  })
+
       });
-      
-      
+
+
       // GET route for getting all users
       app.get('/api/users', function (req, res) {
             db.User.findAll({})
@@ -153,4 +160,24 @@ module.exports = function (app) {
                         res.json(dbUser);
                   })
       });
+
+      // GET route for getting user with specified email
+      app.post('/login', function (req, res) {
+            db.User.findOne({
+                  where: {
+                        email: req.body.email
+                  }
+            }).then(function (dbUser) {
+                  console.log(dbUser);
+                  db.User.validPassword(req.body.password, dbUser.dataValues.hash)
+                        .then(function (resp) {
+                              res.json({"msg": "Login sucess"});
+                              console.log(resp)
+                        }).catch(function (err) {
+                              console.log(err);
+                              res.json({"msg": "Login fail;"});
+                        })
+            })
+
+      })
 };

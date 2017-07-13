@@ -4,6 +4,7 @@
   "description": "A “one stop shop” political social networking website where people can go to read news, browse actions they can take and/or events they can attend with friends to increase their political involvement.",
   "main": "server.js",
   "dependencies": {
+    "@google/maps": "^0.4.2",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
