@@ -11,7 +11,7 @@ module.exports = function (app) {
       });
 
       // GET route for returning events in a specific location
-      app.get('/api/events/location/:location', function (req, res) {
+      app.get('events/location/:location', function (req, res) {
             db.Event.findAll({
                         where: {
                               location: req.params.location
@@ -23,7 +23,7 @@ module.exports = function (app) {
       });
 
       // GET route for returning events created by a specific user
-      app.get('/api/events/host/:host', function (req, res) {
+      app.get('events/host/:host', function (req, res) {
             db.Event.findAll({
                         where: {
                               host: req.params.host
@@ -35,7 +35,7 @@ module.exports = function (app) {
       });
 
       // GET route for retrieving a single event
-      app.get('/api/events/:id', function (req, res) {
+      app.get('events/:id', function (req, res) {
             db.Event.findOne({
                         where: {
                               id: req.params.id
@@ -47,7 +47,7 @@ module.exports = function (app) {
       });
 
       // GET route for retrieving upcoming events
-      app.get('/api/events/date/:date', function (req, res) {
+      app.get('events/date/:date', function (req, res) {
             db.Event.findAll({
                         where: {
                               date: {
@@ -79,32 +79,6 @@ module.exports = function (app) {
                         res.json(dbEvent)
                   })
       });
-
-
-
-      // ----------------------------------------------------
-      // !!!!! NEW FXN - CHECK AFTER CREATING USER !!!!!!
-      // POST route for adding attendees to event
-      app.post('/event', function (req, res) {
-            db.Event.find({
-                        where: {
-                              id: 1
-                        }
-                  }).on('success', function (event) {
-                        db.User.findAll({
-                              where: {
-                                    id: [1, 2, 3]
-                              }
-                        }).on('success', function (user) {
-                              event.setUsers(user);
-                        });
-                  })
-                  .then(function (dbEvent) {
-                        res.json(dbEvent)
-                  });
-      })
-
-      // ----------------------------------------------------
 
 
       // DELETE route for deleting events
@@ -143,11 +117,11 @@ module.exports = function (app) {
                                     email: req.body.email,
                                     hash: resp
                               })
-                              .then(function (dbUser) {
-                                    res.json(dbUser)
+                              .then(function (resp) {
+                                    res.json({"msg": "Registration sucess"});
+                              }).catch (function (err) {
+                                    res.json({"msg": "Registration fail"});
                               })
-                  }).catch(function () {
-                        console.log("Promise Rejected");
                   })
 
       });
@@ -161,7 +135,7 @@ module.exports = function (app) {
                   })
       });
 
-      // GET route for getting user with specified email
+      // POST route for comparing password entered to the one in db
       app.post('/login', function (req, res) {
             db.User.findOne({
                   where: {
@@ -172,12 +146,11 @@ module.exports = function (app) {
                   db.User.validPassword(req.body.password, dbUser.dataValues.hash)
                         .then(function (resp) {
                               res.json({"msg": "Login sucess"});
-                              console.log(resp)
                         }).catch(function (err) {
-                              console.log(err);
                               res.json({"msg": "Login fail;"});
                         })
             })
 
       })
+
 };
