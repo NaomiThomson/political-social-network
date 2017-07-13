@@ -21,13 +21,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT
     }
   });
-  // Event.associate = function (models) {
-  //   // Using additional options like CASCADE etc for demonstration
-  //   // Can also simply do Task.belongsTo(models.User);
-  //   Event.belongsToMany(models.User, {
-  //     through: 'Attendees'
-  //   });
-  // }
+  
+  Event.associate = function (models) {
+    // Using additional options like CASCADE etc for demonstration
+    // Can also simply do Task.belongsTo(models.User);
+    Event.belongsToMany(models.User, {
+      through: 'Attendees'
+    });
+  }
 
   return Event;
 };
