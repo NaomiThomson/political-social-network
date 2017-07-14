@@ -19,30 +19,14 @@ $(document).ready(function () {
       password: passwordInput.val().trim()
     };
     
-    // // Submits a new post and brings user to newsfeed upon completion
-    // $.post("/api/login", userLogin, function(resp) {
-    //   console.log('hello? am i here')
-    //   if (resp.msg = true) {
-    //     console.log('success');
-    //     // window.location.href = "/newsfeed";
-    //   } 
-
-    //   if (resp.msg = false) {
-    //     // window.location.href = "/login"
-    //     console.log('FAIL');
-    //     console.log(resp.msg)
-    //   }
-      
-    // })
 
     axios.post('/api/login', userLogin)
-    .then(function (resp) {
-      console.log(resp)
-      if (resp.data == true) {
-        window.location.href = '/newsfeed'
-      } else {
-        window.location.href = 'login'
-      }
+    .then(function (res) {
+      console.log(res)
+      if (res.data) {
+        localStorage.setItem('userId', res.data);
+        window.location.href = '/newsfeed';
+      } 
     })
     .catch(function (err) {
       console.log(err)
