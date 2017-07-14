@@ -119,9 +119,6 @@ app.get("/political", function (req, res) {
     request(options, function (error, response, body) {
         if (error) throw error;
         var jbod = JSON.parse(response.body);
-        var arrName = [];
-        var arrEnt = [];
-
         var objPolitic = [];
         for (var i = 0; i < 50; i++) {
             var obj = {
