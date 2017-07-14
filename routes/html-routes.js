@@ -6,11 +6,11 @@ module.exports = function(app) {
       res.sendFile(path.join(__dirname + '/../public/addevent.html'))
    }); 
 
-   app.get('/editevent', function(req, res) {
+   app.get('/editevent/:id', function(req, res) {
       res.sendFile(path.join(__dirname + '/../public/editevent.html'))
    }); 
 
-   app.get('/event', function(req, res) {
+   app.get('/event/:id', function(req, res) {
       res.sendFile(path.join(__dirname + '/../public/event.html'))
    }); 
 

@@ -28,7 +28,8 @@ $(document).ready(function () {
 
     axios.post('/api/events', newEvent)
     .then(function (res) {
-      window.location.href = '/event'
+      localStorage.setItem('eventId', res.data.id);
+      window.location.href = '/event';
     })
   });
 
