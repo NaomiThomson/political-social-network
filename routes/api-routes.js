@@ -149,7 +149,6 @@ app.get("/political", function (req, res) {
 });
 
 //political api end 
-}; 
 
       // POST route for saving a new user
       app.post('/api/register', function (req, res) {
@@ -181,21 +180,19 @@ app.get("/political", function (req, res) {
 
       // POST route for comparing password entered to the one in db
       app.post('/api/login', function (req, res) {
+            var userId;
             db.User.findOne({
                   where: {
                         email: req.body.email
                   }
             }).then(function (dbUser) {
-                  console.log(dbUser.dataValues.hash);
-                  console.log(req.body.password);
+                  userId = dbUser.dataValues.id
                   db.User.validPassword(req.body.password, dbUser.dataValues.hash)
-                        .then(function (resp) {
-                              if (resp == true) {
-                                    res.json(resp);
-                              } 
-                              
-                              if (resp == false) {
-                                    res.json(resp);
+                        .then(function (isValid) {
+                              if (isValid) {
+                                    res.json(userId);
+                              } else {
+                                    res.status(404).send();
                               }
                         }).catch(function (err) {
                               res.json(err)
