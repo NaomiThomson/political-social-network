@@ -2,17 +2,15 @@ $(document).ready(function () {
   console.log('ready');
   // Gets an optional query string from our url 
   var url = window.location.search;
-  var postId;
+  var eventId;
 
   // If we have this section in our url, we pull out the post id from the url
-  // In localhost:8080/cms?post_id=1, postId is 1
-  if (url.indexOf("?post_id=") !== -1) {
-    postId = url.split("=")[1];
-    getPostData(postId);
+  if (url.indexOf("?event_id=") !== -1) {
+    eventId = url.split("=")[1];
+    getEventData(eventId);
   }
 
-  // Getting jQuery references to the post body, title, form, and category select
-  var hostInput = $("#host");
+  // Getting jQuery references to the event info
   var titleInput = $("#title");
   var locationInput = $("#location");
   var dateInput = $("#date");
@@ -23,13 +21,13 @@ $(document).ready(function () {
 
     event.preventDefault();
 
-    // Wont submit the post if we are missing a body or a title
+    // Wont submit the event if we are missing required inputs
     if (!titleInput.val().trim() || !locationInput.val().trim() || !dateInput.val().trim()) {
       return;
     }
 
        // Constructing a newPost object to hand to the database
-    var newPost = {
+    var newEvent = {
       host: hostInput.val().trim(),
       title: titleInput.val().trim(),
       location: locationInput.val().trim(),
@@ -37,32 +35,29 @@ $(document).ready(function () {
       description: descriptionInput.val().trim()
     };
 
-    newPost.id = postId;
-    updatePost(newPost);
+    newEvent.id = eventId;
+    updateEvent(newEvent);
   });
 
-  // Gets post data for a post if we're editing
-  function getPostData(id) {
-    $.get(`/api/events/${id}`, function (data) {
-      if (data) {
-        // If this post exists, prefill our cms forms with its data
-        hostInput.val(data.host);
+  // Gets event data for an event if we're editing
+  function getEventData(id) {
+
+    axios.get(`/api/events/${id}`)
+    .then(function (data) {
+      // If this event exists, prefill our form with its data
         titleInput.val(data.title);
         locationInput.val(data.location);
         dateInput.val(data.date);
         descriptionInput.val(data.description);
-      }
-    });
+    })
   }
-  // Update a given post, bring user to the blog page when done
-  function updatePost(post) {
-    $.ajax({
-        method: "PUT",
-        url: "/api/events",
-        data: post
-      })
-      .done(function () {
-        window.location.href = "/home";
-      });
+  // Update a given an event, bring user to the blog page when done
+  function updateEvent(eventData) {
+
+    axios.put('/api/events', eventData)
+    .then(function (res) {
+      window.location.href = '/event'
+    })
+    
   }
 });
