@@ -147,7 +147,6 @@ module.exports = function (app) {
           }
           res.send(objPolitic);
       });
-
     });
 
     //political api end 
