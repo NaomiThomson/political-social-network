@@ -13,6 +13,7 @@
    <meta name="description" content="">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://code.jquery.com/jquery.js"></script>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
    <script src="../js/addevent.js"></script>
 </head>
 
@@ -23,8 +24,6 @@
 
    <div>
       <form id="event-form">
-         Host name:<br>
-         <input type="text" id="host"><br> 
          Title of event:<br>
          <input type="text" id="title"><br>
          Location of event:<br>
@@ -33,7 +32,6 @@
          <input type="datetime-local" id="date"><br>
          Description:<br>
          <input type="text" id="description"><br>
-         <input type="text" id="tags"><br>
       </form><br><br>
 
       <button type="button" class="submit" id="add-btn">Submit</button>
