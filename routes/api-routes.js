@@ -3,7 +3,7 @@ var path = require("path");
 var request = require("request");
 module.exports = function (app) {
 
-      // GET , route for getting all events
+      // GET route for getting all events
       app.get('/api/events', function (req, res) {
             db.Event.findAll({})
                   .then(function (dbEvent) {
@@ -35,8 +35,9 @@ module.exports = function (app) {
                   })
       });
 
+
       // GET route for retrieving a single event
-      app.get('events/:id', function (req, res) {
+      app.get('/api/events/:id', function (req, res) {
             db.Event.findOne({
                   where: {
                         id: req.params.id
@@ -48,7 +49,7 @@ module.exports = function (app) {
       });
 
       // GET route for retrieving upcoming events
-      app.get('events/date/:date', function (req, res) {
+      app.get('api/events/:date', function (req, res) {
             db.Event.findAll({
                   where: {
                         date: {
