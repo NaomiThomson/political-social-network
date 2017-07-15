@@ -1,99 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Citizen</title>
-  
-          
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Citizen</title>
+
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
 
-  <!--Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:300" rel="stylesheet">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:300" rel="stylesheet">
 
-  <!-- Compiled and minified CSS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 </head>
 
-	<body>
-        <div class="container-fluid">
-            <div class="main align center">
-                <br><br><br><br>
-                <h1>Citi(zen)</h1>
-                Your 1-Stop Political Prop!
-                <br><br>
-             <button class="waves-effect waves-light btn red modal-trigger" data-target="login">Login</button>
-                <!--LOGIN MODAL -->
-                <div id="login" class="modal">
-                    <div class="modal-content">
+<body>
+    <div class="container-fluid">
+        <div class="main align center">
+            <br><br><br><br>
+            <h1>Citi(zen)</h1>
+            Your 1-Stop Political Prop!
+            <br><br>
+            <button class="waves-effect waves-light btn red modal-trigger" data-target="login">Login</button>
+            <!--LOGIN MODAL -->
+            <div id="login" class="modal">
+                <div class="modal-content">
                     <h2>Login</h2>
 
                     <div class="row">
                         <form class="col s12">
-                        <div class="row modal-form-row">
-                            <div class="input-field col s12">
-                            <input id="email" type="text" class="validate">
-                            <label for="email">Email</label>
+                            <div class="row modal-form-row">
+                                <div class="input-field col s12">
+                                    <input id="email" type="text" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                            <input id="password" type="text" class="validate">
-                            <label for="password">Password</label>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password" type="text" class="validate">
+                                    <label for="password">Password</label>
+                                </div>
                             </div>
-                        </div>                   
                         </form>
                     </div>
-                    </div>
-                    <div class="modal-footer">
-                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="login-btn">Login</a>
-                    </div>
                 </div>
+                <div class="modal-footer">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="login-btn">Login</a>
+                </div>
+            </div>
 
-                <br><br>
+            <br><br>
 
-                <button class="waves-effect waves-light btn blue modal-trigger" data-target="signup">Signup</button>
-                <!-- SIGNUP MODAL -->
-                <div id="signup" class="modal">
-                    <div class="modal-content">
+            <button class="waves-effect waves-light btn blue modal-trigger" data-target="signup">Signup</button>
+            <!-- SIGNUP MODAL -->
+            <div id="signup" class="modal">
+                <div class="modal-content">
                     <h4>Signup</h4>
 
                     <div class="row">
                         <form class="col s12">
-                        <div class="row modal-form-row">
-                            <div class="input-field col s12">
-                            <input id="email-signup" type="text" class="validate">
-                            <label for="email-signup">Email</label>
+                            <div class="row modal-form-row">
+                                <div class="input-field col s12">
+                                    <input id="email-signup" type="text" class="validate">
+                                    <label for="email-signup">Email</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                            <input id="username-signup" type="text" class="validate">
-                            <label for="username-signup">Username</label>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="username-signup" type="text" class="validate">
+                                    <label for="username-signup">Username</label>
+                                </div>
                             </div>
-                        </div>       
-                        <div class="row">
-                            <div class="input-field col s12">
-                            <input id="password-signup" type="text" class="validate">
-                            <label for="password-signup">Password</label>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password-signup" type="text" class="validate">
+                                    <label for="password-signup">Password</label>
+                                </div>
                             </div>
-                        </div>             
                         </form>
                     </div>
-                    </div>
-                    <div class="modal-footer">
-                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="signup-btn">Signup</a>
-                    </div>
                 </div>
-                <br><br>
-            <a href="#">About <br>v</a>            
+                <div class="modal-footer">
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="signup-btn">Signup</a>
+                </div>
+            </div>
+            <br><br>
+            <a href="#">About <br>v</a>
 
-                <div class="about">
-                    <!--<div class="carousel carousel-slider center" data-indicators="true">
+            <div class="about">
+                <!--<div class="carousel carousel-slider center" data-indicators="true">
                         <div class="carousel-item red white-text" href="#one!">
                             <h2>First Panel</h2>
                             <p class="white-text">This is your first panel</p>
@@ -111,68 +112,73 @@
                             <p class="white-text">This is your fourth panel</p>
                         </div>
                     </div>-->
-                </div>
+            </div>
 
             <footer class="page-footer grey darken-3">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Citi(zen)</h5>
-                <p class="grey-text text-lighten-4">A “one stop shop” political social networking site.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#github">Anthony</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#github">Naomoi</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#github">Steve</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#github">Maria</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#github">Seth</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2017 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Citi(zen)</h5>
+                            <p class="grey-text text-lighten-4">A “one stop shop” political social networking site.</p>
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <h5 class="white-text">Links</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="#github">Anthony</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#github">Naomoi</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#github">Steve</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#github">Maria</a></li>
+                                <li><a class="grey-text text-lighten-3" href="#github">Seth</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        © 2017 Copyright Text
+                        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                    </div>
+                </div>
+            </footer>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
 
-        <script>
-        $(document).ready(function(){
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-            $('.modal-trigger').leanModal();
-        });
-        </script>
-    
+            <script>
+                $(document).ready(function () {
+                    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                    $('.modal-trigger').leanModal();
+                });
+            </script>
+
 </body>
 
 <style>
     a {
-        color:white;
+        color: white;
     }
+
     .modal {
-        color:black;
+        color: black;
     }
+
     body {
         font-family: 'Roboto';
         font-size: 18px;
-        color:white ;
-        position:relative;
-        top:-35px;
+        color: white;
+        position: relative;
+        top: -35px;
     }
+
     h1 {
         font-family: 'Lobster';
     }
+
     .main {
-        background-color:#90caf9;
+        background-color: #90caf9;
     }
+
     .about {
         background-color: #ef5350;
         height: 600px;
@@ -180,85 +186,80 @@
 </style>
 
 <script type="text/javascript">
-$(document).ready(function () {
-    console.log("hi")
-  // Getting jQuery references to the post body, title, form, and category select
-  var emailInput = $("#email");
-  var passwordInput = $("#password");
+    $(document).ready(function () {
+        console.log("hi")
+        // Getting jQuery references to the post body, title, form, and category select
+        var emailInputSignup = $("#email-signup");
+        var passwordInputSignup = $("#password-signup");
+        var emailInputLogin = $("#email-login");
+        var passwordInputLogin = $("#password-login");
 
-  // Adding an event listener for when the form is submitted
-  $("#login-btn").on("click", function handleFormSubmit(event) {
-    console.log("submit")
-    event.preventDefault();
+        // Adding an event listener for when the form is submitted
+        $("#login-btn").on("click", function handleFormSubmit(event) {
+            console.log("submit")
+            event.preventDefault();
 
-    // Wont submit the post if we are missing a body or a title
-    if (!emailInput.val().trim() || !passwordInput.val().trim()) {
-      return;
-    }
-    // Constructing a newEvent object to hand to the database
-    var userLogin = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
-    };
-    
+            // Wont submit the post if we are missing a body or a title
+            if (!emailInputLogin.val().trim() || !passwordInputLogin.val().trim()) {
+                return;
+            }
+            // Constructing a newEvent object to hand to the database
+            var userLogin = {
+                email: emailInputLogin.val().trim(),
+                password: passwordInputLogin.val().trim()
+            };
 
-    axios.post('/api/login', userLogin)
-    .then(function (res) {
-      console.log(res)
-      if (res.data) {
-        localStorage.setItem('userId', res.data);
-        window.location.href = '/newsfeed';
-      } else {
-          console.error("wtf")
-          console.log(res)
-        // ERROR MSG GOES HERE
-      }
-    })
-    .catch(function (err) {
-      console.log(err)
-    })
 
-  });
+            axios.post('/api/login', userLogin)
+                .then(function (res) {
+                    console.log(res)
+                    if (res.data) {
+                        localStorage.setItem('userId', res.data);
+                        window.location.href = '/newsfeed';
+                    } else {
+                        console.error("wtf")
+                        console.log(res)
+                        // ERROR MSG GOES HERE
+                    }
+                })
+                .catch(function (err) {
+                    console.log(err)
+                })
 
-});
+        });
+        // Getting jQuery references to the post body, title, form, and category select
 
-$(document).ready(function () {
+        // Adding an event listener for when the form is submitted
+        $("#signup-btn").on("click", function handleFormSubmit(event) {
+            console.log("signup")
+            event.preventDefault();
 
-  // Getting jQuery references to the post body, title, form, and category select
-  var usernameInput = $("#username");
-  var emailInput = $("#email");
-  var passwordInput = $("#password");
-  
-  // Adding an event listener for when the form is submitted
-  $("#signup-btn").on("click", function handleFormSubmit(event) {
-    console.log("signup")
-    event.preventDefault();
-      var emailInput = $("#email-signup");
-    var passwordInput = $("#password-signup");
-    // Wont submit the post if we are missing a body or a title
-    if (!emailInput.val().trim() || !passwordInput.val().trim()) {
-      return;
-    }
-    // Constructing a newEvent object to hand to the database
-    var newUser = {
-      username: usernameInput.val().trim(),
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
-    };
+            // Wont submit the post if we are missing a body or a title
+            if (!emailInputSignup.val().trim() || !passwordInputSignup.val().trim()) {
+                return;
+            }
+            // Constructing a newEvent object to hand to the database
+            var newUser = {
+                email: emailInputSignup.val().trim(),
+                password: passwordInputSignup.val().trim()
+            };
 
-    // // Submits a new post and brings user to newsfeed upon completion
-    console.log("time to post")
-    axios.post('/api/register', newUser)
-    .then(function (resp) {
-        console.log("eyy");
-      window.location.href = '/newsfeed'
-    })
-    .catch(function (err) {
-      console.log(err)
-      // ERROR MSG GOES HERE
-    })
-  });
+            // // Submits a new post and brings user to newsfeed upon completion
+            console.log("time to post")
+            axios.post('/api/register', newUser)
+                .then(function (resp) {
+                    console.log("eyy");
+                    window.location.href = '/newsfeed'
+                })
+                .catch(function (err) {
+                    console.log(err)
+                    // ERROR MSG GOES HERE
+                })
+        });
 
-});
+    });
+
+
 </script>
+
 </html>

@@ -23,13 +23,18 @@ module.exports = function(app) {
    }); 
 
    app.get('/newsfeed', function(req, res) {
-      res.sendFile(path.join(__dirname + '/../public/newsfeed.html'))
+     console.log("snkk");
+      res.sendFile(path.join(__dirname + '/../views/events.html'))
    }); 
 
     app.get('/login', function(req, res) {
       res.sendFile(path.join(__dirname + '/../public/login.html'))
    }); 
-    app.get('/findevent', function(req, res) {
-      res.sendFile(path.join(__dirname + '/../public/findevent.html'))
+  //   app.get('/findevent', function(req, res) {
+  //     res.sendFile(path.join(__dirname + '/../public/findevent.html'))
+  //  });
+
+   app.get('/findevent', function(req, res) {
+      res.sendFile(path.join(__dirname + '/../views/findevent.html'))
    });
 }
