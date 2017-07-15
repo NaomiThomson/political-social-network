@@ -26,7 +26,9 @@ $(document).ready(function () {
       if (res.data) {
         localStorage.setItem('userId', res.data);
         window.location.href = '/newsfeed';
-      } 
+      } else {
+        // ERROR MSG GOES HERE
+      }
     })
     .catch(function (err) {
       console.log(err)
