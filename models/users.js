@@ -1,24 +1,27 @@
-module.exports = function (sequelize, DataTypes) {
-   var User = sequelize.define("User", {
-      email: DataTypes.STRING,
-      password: DataTypes.STRING
-   }, {
-    instanceMethods: {
-        generateHash: function(password) {
-            return bcrypt.hash(password, saltRounds, null);
-        },
-        validPassword: function(password) {
-            return bcrypt.compare(password, hash);
-        },
-    }
-  });
+var bcrypt = require('bcrypt'); 
 
-   User.associate = function (models) {
-    // Using additional options like CASCADE etc for demonstration
-    // Can also simply do Task.belongsTo(models.User);
-    User.belongsToMany(models.Event, {
-      through: 'Attendees'
+module.exports = function (sequelize, DataTypes) {
+    var User = sequelize.define("User", {
+        username: DataTypes.STRING,
+        email: DataTypes.STRING,
+        hash: DataTypes.STRING
     });
-  }
-   return User;
+    User.generateHash = function (password) {
+        console.log(password);
+        return bcrypt.hash(password, 10);
+    }
+    User.validPassword = function (password, hash) {
+        console.log(password, hash);
+        return bcrypt.compare(password, hash);
+    }
+
+
+       User.associate = function (models) {
+        // Using additional options like CASCADE etc for demonstration
+        // Can also simply do Task.belongsTo(models.User);
+        User.belongsToMany(models.Event, {
+          through: 'Attendees'
+        });
+      }
+    return User;
 }

@@ -1,4 +1,6 @@
 var express = require('express');
+var path = require("path");
+var request = require("request");
 var bodyParser = require('body-parser');
 
 var PORT = process.env.PORT || 3000;
@@ -6,6 +8,12 @@ var app = express();
 
 // Requiring our models for syncing
 var db = require("./models");
+
+//Handlebars Setup
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -26,3 +34,7 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+}); 

@@ -22,7 +22,8 @@ $(document).ready(function () {
       title: titleInput.val().trim(),
       location: locationInput.val().trim(),
       date: dateInput.val().trim(),
-      description: descriptionInput.val().trim()
+      description: descriptionInput.val().trim(), 
+      tags: descriptionInput.val().trim()
     };
 
     // // Submits a new post and brings user to event page upon completion
