@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
   // Getting jQuery references to the post body, title, form, and category select
-  var hostInput = $("#host");
   var titleInput = $("#title");
   var locationInput = $("#location");
   var dateInput = $("#date");
@@ -18,17 +17,19 @@ $(document).ready(function () {
     }
     // Constructing a newEvent object to hand to the database
     var newEvent = {
-      host: hostInput.val().trim(),
+      host: localStorage.getItem('userId'),
       title: titleInput.val().trim(),
       location: locationInput.val().trim(),
       date: dateInput.val().trim(),
-      description: descriptionInput.val().trim(), 
-      tags: descriptionInput.val().trim()
+      description: descriptionInput.val().trim()
     };
 
     // // Submits a new post and brings user to event page upon completion
-    $.post("/api/events", newEvent, function() {
-      window.location.href = "/event"
+
+    axios.post('/api/events', newEvent)
+    .then(function (res) {
+      localStorage.setItem('eventId', res.data.id);
+      window.location.href = '/event';
     })
   });
 

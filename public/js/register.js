@@ -22,9 +22,6 @@ $(document).ready(function () {
     };
 
     // // Submits a new post and brings user to newsfeed upon completion
-    // $.post("/register", newUser, function() {
-    //   window.location.href = "/newsfeed"
-    // })
 
     axios.post('/api/register', newUser)
     .then(function (resp) {
@@ -32,6 +29,7 @@ $(document).ready(function () {
     })
     .catch(function (err) {
       console.log(err)
+      // ERROR MSG GOES HERE
     })
   });
 
