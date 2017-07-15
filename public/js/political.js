@@ -10,7 +10,7 @@ $(document).ready(function(){
       //console.log(JSON.stringify(JSON.parse(response),null,2));
       //$("#event").empty();
        
-       $("#event").append(response[0].City);
+       $("#name").append(response[0].Name);
   });
   // axios.get('/political')
   // .then(function(resp){
