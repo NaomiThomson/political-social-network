@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:300" rel="stylesheet">
 
   <!-- Compiled and minified CSS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 </head>
 
@@ -49,7 +50,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Login</a>
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="login-btn">Login</a>
                     </div>
                 </div>
 
@@ -85,7 +86,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Signup</a>
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="signup-btn">Signup</a>
                     </div>
                 </div>
                 <br><br>
@@ -177,4 +178,87 @@
         height: 600px;
     }
 </style>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    console.log("hi")
+  // Getting jQuery references to the post body, title, form, and category select
+  var emailInput = $("#email");
+  var passwordInput = $("#password");
+
+  // Adding an event listener for when the form is submitted
+  $("#login-btn").on("click", function handleFormSubmit(event) {
+    console.log("submit")
+    event.preventDefault();
+
+    // Wont submit the post if we are missing a body or a title
+    if (!emailInput.val().trim() || !passwordInput.val().trim()) {
+      return;
+    }
+    // Constructing a newEvent object to hand to the database
+    var userLogin = {
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim()
+    };
+    
+
+    axios.post('/api/login', userLogin)
+    .then(function (res) {
+      console.log(res)
+      if (res.data) {
+        localStorage.setItem('userId', res.data);
+        window.location.href = '/newsfeed';
+      } else {
+          console.error("wtf")
+          console.log(res)
+        // ERROR MSG GOES HERE
+      }
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+
+  });
+
+});
+
+$(document).ready(function () {
+
+  // Getting jQuery references to the post body, title, form, and category select
+  var usernameInput = $("#username");
+  var emailInput = $("#email");
+  var passwordInput = $("#password");
+  
+  // Adding an event listener for when the form is submitted
+  $("#signup-btn").on("click", function handleFormSubmit(event) {
+    console.log("signup")
+    event.preventDefault();
+      var emailInput = $("#email-signup");
+    var passwordInput = $("#password-signup");
+    // Wont submit the post if we are missing a body or a title
+    if (!emailInput.val().trim() || !passwordInput.val().trim()) {
+      return;
+    }
+    // Constructing a newEvent object to hand to the database
+    var newUser = {
+      username: usernameInput.val().trim(),
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim()
+    };
+
+    // // Submits a new post and brings user to newsfeed upon completion
+    console.log("time to post")
+    axios.post('/api/register', newUser)
+    .then(function (resp) {
+        console.log("eyy");
+      window.location.href = '/newsfeed'
+    })
+    .catch(function (err) {
+      console.log(err)
+      // ERROR MSG GOES HERE
+    })
+  });
+
+});
+</script>
 </html>

@@ -5,9 +5,10 @@ $(document).ready(function () {
   var passwordInput = $("#password");
 
   // Adding an event listener for when the form is submitted
-  $("#add-btn").on("click", function handleFormSubmit(event) {
+  $("#login-btn").on("click", function handleFormSubmit(event) {
 
     event.preventDefault();
+      console.log("cl")
 
     // Wont submit the post if we are missing a body or a title
     if (!emailInput.val().trim() || !passwordInput.val().trim()) {
