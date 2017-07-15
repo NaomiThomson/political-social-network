@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Citizen</title>
   
@@ -28,14 +29,14 @@
              <button class="waves-effect waves-light btn red modal-trigger" data-target="login">Login</button>
                 <!--LOGIN MODAL -->
                 <div id="login" class="modal">
-                    <div class="modal-content">
+                    <div class="modal-content" id="login">
                     <h2>Login</h2>
 
                     <div class="row">
                         <form class="col s12">
                         <div class="row modal-form-row">
                             <div class="input-field col s12">
-                            <input id="email" type="text" class="validate">
+                            <input id="email" type="email" class="validate">
                             <label for="email">Email</label>
                             </div>
                         </div>
@@ -49,7 +50,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Login</a>
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="login-btn">Login</a>
                     </div>
                 </div>
 
@@ -85,7 +86,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                    <a class=" modal-action modal-close waves-effect waves-green btn-flat">Signup</a>
+                    <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="signup-btn">Signup</a>
                     </div>
                 </div>
                 <br><br>
@@ -141,14 +142,112 @@
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        
 
+        
+        <script type="text/javascript">$(document).ready(function () {
 
-        <script>
-        $(document).ready(function(){
+  // Getting jQuery references to the post body, title, form, and category select
+  var emailInput = $("#email");
+  var passwordInput = $("#password");
+
+  // Adding an event listener for when the form is submitted
+  $("#login-btn").on("click", function handleFormSubmit(event) {
+
+    event.preventDefault();
+
+    // Wont submit the post if we are missing a body or a title
+    if (!emailInput.val().trim() || !passwordInput.val().trim()) {
+      return;
+    }
+    // Constructing a newEvent object to hand to the database
+    var userLogin = {
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim()
+    };
+    
+    // // Submits a new post and brings user to newsfeed upon completion
+    // $.post("/api/login", userLogin, function(resp) {
+    //   console.log('hello? am i here')
+    //   if (resp.msg = true) {
+    //     console.log('success');
+    //     // window.location.href = "/newsfeed";
+    //   } 
+
+    //   if (resp.msg = false) {
+    //     // window.location.href = "/login"
+    //     console.log('FAIL');
+    //     console.log(resp.msg)
+    //   }
+      
+    // })
+
+    axios.post('/api/login', userLogin)
+    .then(function (resp) {
+      console.log(resp)
+      if (resp.data == true) {
+        window.location.href = '/feed'
+      } else {
+        window.location.href = '/'
+      }
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+
+  });
+
+});
+
+$(document).ready(function(){
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
         });
+
+//SignUp
+        $(document).ready(function () {
+
+  // Getting jQuery references to the post body, title, form, and category select
+  var usernameInput = $("#username-signup");
+  var emailInput = $("#email-signup");
+  var passwordInput = $("#password-signup");
+  
+  // Adding an event listener for when the form is submitted
+  $("#signup-btn").on("click", function handleFormSubmit(event) {
+
+    event.preventDefault();
+
+    // Wont submit the post if we are missing a body or a title
+    if (!emailInput.val().trim() || !passwordInput.val().trim()) {
+      return;
+    }
+    // Constructing a newEvent object to hand to the database
+    var newUser = {
+      username: usernameInput.val().trim(),
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim()
+    };
+
+    // // Submits a new post and brings user to newsfeed upon completion
+    // $.post("/register", newUser, function() {
+    //   window.location.href = "/newsfeed"
+    // })
+
+    axios.post('/api/register', newUser)
+    .then(function (resp) {
+      window.location.href = '/'
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+  });
+
+});
+
+
         </script>
+        
+        
     
 </body>
 
