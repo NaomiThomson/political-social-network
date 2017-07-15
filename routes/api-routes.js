@@ -141,6 +141,7 @@ app.get("/political", function (req, res) {
             objPolitic.push(obj);
         }
         res.send(objPolitic);
+       
     });
 
 });
