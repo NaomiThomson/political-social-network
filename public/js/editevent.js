@@ -16,7 +16,7 @@ getEventData(eventId);
 
     axios.get(`/api/events/${id}`)
       .then(function (res) {
-        
+        console.log(res.data);
         // If this event exists, prefill our form with its data
         titleInput.val(res.data.title);
         locationInput.val(res.data.location);

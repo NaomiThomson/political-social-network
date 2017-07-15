@@ -2,7 +2,6 @@ var db = require('../models');
 var path = require("path");
 var request = require("request");
 var mysql = require('mysql');
-var should = require('chai').should();
 
 
 module.exports = function (app) {
@@ -14,6 +13,7 @@ module.exports = function (app) {
             res.json(dbEvent);
           })
     });
+
 
     // GET route for returning events in a specific location
     app.get('/api/events/:location', function (req, res) {
@@ -39,6 +39,21 @@ module.exports = function (app) {
           })
     });
 
+      // GET route for retrieving upcoming events
+      app.get('api/events/:date', function (req, res) {
+            db.Event.findAll({
+                  where: {
+                        date: {
+                              gte: NOW()
+                        }
+                  }
+            })
+                  .then(function (dbEvent) {
+                        res.json(dbEvent)
+                  })
+      });
+
+
     // GET route for retrieving a single event
     app.get('/api/events/:id', function (req, res) {
       db.Event.findOne({
@@ -50,20 +65,7 @@ module.exports = function (app) {
             res.json(dbEvent)
           })
     });
-
-    // GET route for retrieving upcoming events
-    app.get('/api/events/:date', function (req, res) {
-      db.Event.findAll({
-            where: {
-                date: {
-                  gte: NOW()
-                }
-            }
-          })
-          .then(function (dbEvent) {
-            res.json(dbEvent)
-          })
-    });
+  
 
     // POST route for saving a new event
     app.post('/api/events', function (req, res) {
