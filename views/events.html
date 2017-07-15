@@ -105,18 +105,8 @@
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
                                 <div class="col-item">
-                                    <div class="gradient ">
-                                        <p> Name:
-                                        <h1 id="name"> </h1>
-                                        </p>
-                                        <p id="host">Host: </p>
-                                        <p id="location">Location: </p>
-                                        <p id="address">Venue Address: </p>
-                                        <p id="enter">Entertainment: </p>
-                                        <p id="start">Start Time: </p>
-                                        <p id="date">Start Date: </p>
-                                        <p id="title">Title: </p>
-                                        <p id="vname">Venue Name: </p>
+                                    <div class="gradient"id="events">
+                                        
                                     </div>
                                     <div class="info">
                                         <div class="row">
@@ -220,26 +210,26 @@
                     //$("#event").empty();
 
                     var newDiv = $('<div>');
-
+                    console.log()
                     for (var i = 0; i < 50; i++) {
                         var p = $('<p>');
 
-                        p.text(response[i].Name);
+                        p.text("Name: "+ response[i].Name + "\n Host: " + response[i].Host+ "\n Venue Address: " + response[i].VenueAddress + "\n Entertainment: "+response[i].Entertainment+ "\n Start Time: "+ response[i].StartTime + "\n Start Date: "+ response[i].StartDate +"\n Title:  "+ response[i].Title+"\n Venue Name: " +response[i].VenueName);
                         
-                        $("#name").append(p);
-                        $("#host").append(response[i].Host);
-                        $("#location").append(response[i].VenueAddress);
-                        $("#address").append(response[i].Host);
-                        $("#enter").append(response[i].Entertainment);
-                        $("#start").append(response[i].Start-Time);
-                        $("#date").append(response[i].Start-Date);
-                        $("#title").append(response[i].Title);
-                        $("#vname").append(response[i].VenueName);
+                        // $("#name").append(p);
+                        // $("#host").append(response[i].Host);
+                        // $("#location").append(response[i].VenueAddress);
+                        // $("#address").append(response[i].Host);
+                        // $("#enter").append(response[i].Entertainment);
+                        // $("#start").append(response[i].StartTime);
+                        // $("#date").append(response[i].StartDate);
+                        // $("#title").append(response[i].Title);
+                        // $("#vname").append(response[i].VenueName);
                         
                         newDiv.append(p)
 
                     }
-
+                    $("#events").append(newDiv)
                 });
         </script>
 </body>
