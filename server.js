@@ -2,7 +2,7 @@ var express = require('express');
 var path = require("path");
 var request = require("request");
 var bodyParser = require('body-parser');
-
+var bcrypt = require('bcrypt');
 var PORT = process.env.PORT || 3000;
 var app = express();
 
@@ -10,10 +10,7 @@ var app = express();
 var db = require("./models");
 
 //Handlebars Setup
-var exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
-app.set("view engine", "handlebars");
+// npm
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
