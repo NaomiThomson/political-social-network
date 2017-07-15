@@ -10,3 +10,4 @@ from Attendees a
 	right join Events e on e.id = a.EventId
     inner join Users u on u.id = a.UserId
 where u.Id = 1
+

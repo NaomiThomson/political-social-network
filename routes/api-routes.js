@@ -148,8 +148,8 @@ app.get("/political", function (req, res) {
 
 });
 
-//political api end 
-}; 
+// //political api end 
+// }; 
 
       // POST route for saving a new user
       app.post('/api/register', function (req, res) {
@@ -203,5 +203,4 @@ app.get("/political", function (req, res) {
             });
 
       });
-
 };
